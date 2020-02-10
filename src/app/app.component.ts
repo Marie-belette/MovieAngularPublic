@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   public title: string = 'movies';
 
-  public defaultCountry: string = "US";
+  public defaultCountry: string = "all";
 
   public movies: any[] = [
     {

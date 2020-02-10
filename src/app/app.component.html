@@ -7,14 +7,16 @@
   </div>
 </div>
 
-<ul>
-    <li  [ngClass]="{'active': defaultCountry == 'all'}" (click) ="defaultCountry='all'">
-     [all]
-    </li>
-    <li  [ngClass]="{'active': defaultCountry == 'US'}" (click) ="defaultCountry='US'">
-      [US]
-    </li>
-    <li [ngClass]="{'active': defaultCountry == 'it'}" (click)="defaultCountry='it'">
-      [it]
-    </li>
-</ul>
+<div id="filter">
+  <select size="1" [(ngModel)]="defaultCountry">
+    <option value="all" selected>
+      All
+    </option>
+    <option value="US">
+      United States of America
+    </option>
+    <option value="it">
+      Italia
+    </option>
+  </select>
+</div>
