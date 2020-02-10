@@ -1,8 +1,8 @@
 <p>Hey, I'm AppComponent, my title is {{ title }}</p>
 
-<div class="movie" *ngFor="let movie of movies"> 
-  <div *ngIf="movie.country == defaultCountry">
-    <h2 [ngClass]="{'old': movie.year < 2000}">{{ movie.title }}</h2>
+<div *ngFor="let movie of movies"> 
+  <div class="movie" *ngIf="movie.country == defaultCountry">
+    <h2 class="title" [ngClass]="{'old': movie.year < 2000}">{{ movie.title }}</h2>
     <h3>{{ movie.year }}</h3>
   </div>
 </div>
