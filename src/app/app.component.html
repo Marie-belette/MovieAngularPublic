@@ -12,11 +12,8 @@
     <option value="all" selected>
       All
     </option>
-    <option value="US">
-      United States of America
-    </option>
-    <option value="it">
-      Italia
+    <option *ngFor="let country of countries" value="{{country}}">
+      {{country}}
     </option>
   </select>
 </div>
