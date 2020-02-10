@@ -1,13 +1,20 @@
-<p>Hey, I'm AppComponent, my title is {{ title }}</p>
+<p>Hey, I'm AppComponent, my title is {{ title | uppercase }}</p>
 
 <div *ngFor="let movie of movies"> 
-  <div class="movie" *ngIf="movie.country == defaultCountry">
+  <div class="movie" *ngIf="(movie.country == defaultCountry) || defaultCountry == 'all'">
     <h2 class="title" [ngClass]="{'old': movie.year < 2000}">{{ movie.title }}</h2>
     <h3>{{ movie.year }}</h3>
   </div>
 </div>
-<button 
-  (click)="toggleCountry()"
->
-  Filter
-</button>
+
+<ul>
+    <li  [ngClass]="{'active': defaultCountry == 'all'}" (click) ="defaultCountry='all'">
+     [all]
+    </li>
+    <li  [ngClass]="{'active': defaultCountry == 'US'}" (click) ="defaultCountry='US'">
+      [US]
+    </li>
+    <li [ngClass]="{'active': defaultCountry == 'it'}" (click)="defaultCountry='it'">
+      [it]
+    </li>
+</ul>

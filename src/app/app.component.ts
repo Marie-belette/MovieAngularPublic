@@ -14,25 +14,29 @@ export class AppComponent {
     {
       title: 'Joker',
       year: 2019,
-      country: 'US'
+      country: 'US',
+      shown: true
     },
     {
       title: 'Avengers',
       year: 2016,
-      country: 'US'
+      country: 'US',
+      shown: true
     },
     {
       title: 'Il était une fois dans l\'ouest',
       year: 1975,
-      country: "it"
+      country: "it",
+      shown: true
     }
   ];
 
   public toggleCountry(): void {
-    if (this.defaultCountry == 'US') {
-      this.defaultCountry = 'it';
-    } else {
-      this.defaultCountry = 'US';
-    }
+    this.defaultCountry = 
+      (this.defaultCountry == 'US') ? this.defaultCountry = 'it'
+                                    : this.defaultCountry = 'US'
+    this.movies.forEach((movie: any) => {
+     movie.shown = movie.country == this.defaultCountry ? true : false;
+    })
   }
 }

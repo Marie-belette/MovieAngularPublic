@@ -16,3 +16,15 @@ div {
         }
     }
 }
+
+ul {
+    display: flex;
+    list-style-type: none;
+    cursor: pointer;
+
+    li {
+    &.active {
+        background-color: bisque;
+    }
+    }
+}
