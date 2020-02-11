@@ -1,11 +1,23 @@
 <h1 id=title>{{ title | uppercase }}</h1>
 
 <div *ngFor="let movie of movies"> 
-  <div class="movie" *ngIf="(movie.country == defaultCountry) || defaultCountry == 'all'">
+  <div class="movie" *ngIf="(movie.year == year) || year == 0">
     <mat-card class='card'>
     <h2 class="title">{{ movie.title }}</h2>
     <h3>{{ movie.year }}</h3>
     <img src="{{movie.image}}">
     </mat-card>
   </div>
+</div>
+
+<div id="filter">         
+  <mat-form-field>
+    <mat-label>By years</mat-label>
+   <mat-select [(ngModel)]="year">
+      <mat-option [value]="0">All</mat-option>
+      <mat-option *ngFor="let year of years" [value]="year">
+      {{year}}
+      </mat-option>
+    </mat-select>
+</mat-form-field>
 </div>

@@ -12,10 +12,9 @@ import { Movie } from './../../core/models/movie'
 export class HomeComponent {
 
   public title: string = 'movies';
-
-  public defaultCountry: string = "all";
-
+  public year: number = 0;
   public movies: Movie[] = [];
+  public years: number[] = [];
 
   public toggleCountry(): void {
     this.defaultCountry = 
@@ -26,20 +25,22 @@ export class HomeComponent {
     })
   };
 
-  public countries: Set<string> = new Set();
 
-  public constructor(private movieService: MovieService) {
-    this.movieService.all().pipe(take(1)) // Take the only one response of the observable
+public constructor(private movieService: MovieService) {
+
+  const years: Set<number> = new Set<number>();
+
+    this.movieService.all()
+    .pipe(
+      take(1) // Take the only one response of the observable
+      ) 
     .subscribe((response: any[]) => {
-      console.log(`Response : ${JSON.stringify(response)}`);
-      this.movies = response.map((movie: Movie) => {return new Movie().deserialize(movie)});
-      console.log(`Response : ${JSON.stringify(this.movies)}`);
+      this.movies = response.map((movie: Movie) => {
+        years.add(movie.year);
+        return new Movie().deserialize(movie)
+      });
+      this.years = Array.from(years).sort();
     });
-
-    this.movieService.allMovies();
-      this.movies.forEach((movie: any) => {
-          this.countries.add(movie.country);
-        });
 
   }
 }
