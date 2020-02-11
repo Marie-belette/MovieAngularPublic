@@ -10,11 +10,19 @@ div {
 
         h2 {
             &.title {
-                letter-spacing: 0.5em;
+                letter-spacing: 0.1em;
+                text-decoration: underline;
                 text-transform: uppercase;
             }
         }
     }
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
 }
 
 ul {
@@ -27,4 +35,18 @@ ul {
         background-color: bisque;
     }
     }
+
 }
+
+.card {
+    width:auto;
+    border: solid gray 1px;
+    text-shadow: grey 50px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: .5%;
+    margin-top: .5%;
+}
+
+#title
+    {text-align: center; color: maroon; text-decoration-line: underline;}

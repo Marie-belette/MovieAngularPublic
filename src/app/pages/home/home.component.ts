@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MovieService } from 'src/app/core/services/movie.service';
+
+import { take } from 'rxjs/operators';
+import { Movie } from './../../core/models/movie'
 
 @Component({
   selector: 'app-home',
@@ -11,32 +15,7 @@ export class HomeComponent {
 
   public defaultCountry: string = "all";
 
-  public movies: any[] = [
-    {
-      title: 'Joker',
-      year: 2019,
-      country: 'United States',
-      shown: true
-    },
-    {
-      title: 'Avengers',
-      year: 2016,
-      country: 'United States',
-      shown: true
-    },
-    {
-      title: 'Il était une fois dans l\'ouest',
-      year: 1975,
-      country: "Italia",
-      shown: true
-    },
-    {
-    title: 'Parasite',
-    year: 2019,
-    country: "Korea",
-    shown: true
-    }
-  ];
+  public movies: Movie[] = [];
 
   public toggleCountry(): void {
     this.defaultCountry = 
@@ -49,10 +28,18 @@ export class HomeComponent {
 
   public countries: Set<string> = new Set();
 
-  public constructor() {
-      this.movies.forEach(movie => {
+  public constructor(private movieService: MovieService) {
+    this.movieService.all().pipe(take(1)) // Take the only one response of the observable
+    .subscribe((response: any[]) => {
+      console.log(`Response : ${JSON.stringify(response)}`);
+      this.movies = response.map((movie: Movie) => {return new Movie().deserialize(movie)});
+      console.log(`Response : ${JSON.stringify(this.movies)}`);
+    });
+
+    this.movieService.allMovies();
+      this.movies.forEach((movie: any) => {
           this.countries.add(movie.country);
         });
-    }
-  }
 
+  }
+}
