@@ -1,5 +1,8 @@
 <h1 id=title>{{ title | uppercase }}</h1>
 
+<app-search>
+</app-search>
+
 <div *ngFor="let movie of movies"> 
   <div class="movie" *ngIf="(movie.year == year) || year == 0">
     <mat-card class='card'>
@@ -21,3 +24,4 @@
     </mat-select>
 </mat-form-field>
 </div>
+
