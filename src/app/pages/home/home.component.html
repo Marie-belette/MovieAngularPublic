@@ -3,16 +3,6 @@
 <app-search>
 </app-search>
 
-<div *ngFor="let movie of movies"> 
-  <div class="movie" *ngIf="(movie.year == year) || year == 0">
-    <mat-card class='card'>
-    <h2 class="title">{{ movie.title }}</h2>
-    <h3>{{ movie.year }}</h3>
-    <img src="{{movie.image}}">
-    </mat-card>
-  </div>
-</div>
-
 <div id="filter">         
   <mat-form-field>
     <mat-label>By years</mat-label>
@@ -24,4 +14,15 @@
     </mat-select>
 </mat-form-field>
 </div>
+
+<div *ngFor="let movie of movies"> 
+  <div class="movie" *ngIf="(movie.year == year) || year == 0">
+    <mat-card class='card'>
+    <h2 class="title">{{ movie.title }}</h2>
+    <h3>{{ movie.year }}</h3>
+    <img src="{{movie.image}}">
+    </mat-card>
+  </div>
+</div>
+
 
