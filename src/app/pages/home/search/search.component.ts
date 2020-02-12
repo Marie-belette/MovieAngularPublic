@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { MovieService } from 'src/app/core/services/movie.service';
 import { take } from 'rxjs/internal/operators/take';
@@ -14,6 +14,8 @@ export class SearchComponent implements OnInit {
 
   public search: string;
 
+  @Output() movies : EventEmitter<Movie[]> = new EventEmitter<Movie[]>();
+
   constructor(private movieService: MovieService) {}
 
   ngOnInit(): void {}
@@ -28,8 +30,8 @@ export class SearchComponent implements OnInit {
           return new Movie().deserialize(movie);
         });
         console.log(`Emit : ${JSON.stringify(movies)}`)
+        this.movies.emit(movies);
       });
-  
     }
   }
 }

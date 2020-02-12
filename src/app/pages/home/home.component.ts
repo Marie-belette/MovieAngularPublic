@@ -32,6 +32,10 @@ public constructor(private movieService: MovieService) {
       });
       this.years = Array.from(years).sort();
     });
+  }
 
+  public receiveMovies($event): void {
+    this.movies = $event;
+    console.log(`Received ${JSON.stringify(this.movies)}`);
   }
 }

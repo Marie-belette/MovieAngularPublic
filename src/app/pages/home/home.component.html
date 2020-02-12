@@ -1,6 +1,6 @@
 <h1 id=title>{{ title | uppercase }}</h1>
 
-<app-search>
+<app-search (movies)="receiveMovies($event)">
 </app-search>
 
 <div id="filter">         
