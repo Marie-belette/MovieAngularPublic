@@ -2,7 +2,7 @@
 <form class="film-form">
     <mat-form-field class="full-width">
       <mat-label>Movie</mat-label>
-      <input matInput placeholder="Title">
+      <input title="title" matInput placeholder="Title" name="search" [(ngModel)]="search">
     </mat-form-field>
     <button mat-button (click)="onClick()">Search</button>
 </form>
