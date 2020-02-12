@@ -14,4 +14,7 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public onClick() : void {
+    
+  }
 }
