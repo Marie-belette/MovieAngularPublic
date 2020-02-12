@@ -16,15 +16,6 @@ export class HomeComponent {
   public movies: Movie[] = [];
   public years: number[] = [];
 
-  public toggleCountry(): void {
-    this.defaultCountry = 
-      (this.defaultCountry == 'US') ? this.defaultCountry = 'it'
-                                    : this.defaultCountry = 'US'
-    this.movies.forEach((movie: any) => {
-     movie.shown = movie.country == this.defaultCountry ? true : false;
-    })
-  };
-
 
 public constructor(private movieService: MovieService) {
 
