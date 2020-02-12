@@ -1,19 +1,23 @@
 <h1 id=title>{{ title | uppercase }}</h1>
 
-<app-search (movies)="receiveMovies($event)">
-</app-search>
+<mat-toolbar>
+  
+  <app-search (movies)="receiveMovies($event)">
+  </app-search>
 
-<div id="filter">         
-  <mat-form-field>
-    <mat-label>By years</mat-label>
-   <mat-select [(ngModel)]="year">
-      <mat-option [value]="0">All</mat-option>
-      <mat-option *ngFor="let year of years" [value]="year">
-      {{year}}
-      </mat-option>
-    </mat-select>
-</mat-form-field>
-</div>
+  <div id="filter">         
+    <mat-form-field>
+      <mat-label>By years</mat-label>
+     <mat-select [(ngModel)]="year">
+        <mat-option [value]="0">All</mat-option>
+        <mat-option *ngFor="let year of years" [value]="year">
+        {{year}}
+        </mat-option>
+      </mat-select>
+  </mat-form-field>
+  </div>
+
+</mat-toolbar>
 
 <div *ngFor="let movie of movies"> 
   <div class="movie" *ngIf="(movie.year == year) || year == 0">

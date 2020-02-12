@@ -50,7 +50,7 @@ ul {
 
 #title
     {text-align: center; 
-    font-size: 4em;
+    font-size: 5em;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: -webkit-linear-gradient(#eee, rgb(0, 59, 51));
     -webkit-background-clip: text;
@@ -68,7 +68,12 @@ h3 {
 }
 
 #filter {
-    margin-top: 30px;
-    margin-left: 2%;
-    margin-bottom: 30px;
+    margin-top: 10px;
+    margin-left: 10%;
+    margin-bottom: 5px;
+}
+
+mat-toolbar {
+    height: fit-content;
+    background-image: radial-gradient(#eee, rgba(201, 236, 232, 0.3));
 }
