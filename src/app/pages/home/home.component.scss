@@ -25,19 +25,6 @@ img {
     width: 200px;
 }
 
-ul {
-    display: flex;
-    list-style-type: none;
-    cursor: pointer;
-
-    li {
-    &.active {
-        background-color: bisque;
-    }
-    }
-
-}
-
 .card {
     width:auto;
     background-image: radial-gradient(#eee, rgb(0, 59, 51, 70%));
@@ -50,11 +37,12 @@ ul {
 
 #title
     {text-align: center; 
-    font-size: 5em;
+    font-size: 8em;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: -webkit-linear-gradient(#eee, rgb(0, 59, 51));
-    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    color: transparent;
+ background: url(https://static.lpnt.fr/images/2019/04/19/18483687lpw-18484159-article-jpg_6148153_980x426.jpg) repeat;
+ -webkit-background-clip: text;
     }
     
 .title {
