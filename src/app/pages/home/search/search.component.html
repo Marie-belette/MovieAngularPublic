@@ -1,8 +1,17 @@
 
-<form class="film-form">
+<form [formGroup]="searchForm" class="film-form">
     <mat-form-field class="full-width">
       <mat-label>Movie</mat-label>
-      <input title="title" matInput placeholder="Title" name="search" [(ngModel)]="search">
+      <input 
+        type="title" 
+        matInput 
+        placeholder="Title" 
+        formControlName="search"
+        (ngModelChange)="reload()">
     </mat-form-field>
-    <button mat-button (click)="onClick()">Search</button>
+    <button 
+        mat-raised-button 
+        (click)="onClick()"
+        [disabled]="searchForm.invalid"
+    >Search</button>
 </form>

@@ -40,16 +40,32 @@ ul {
 
 .card {
     width:auto;
-    border: solid gray 1px;
+    background-image: radial-gradient(#eee, rgb(0, 59, 51, 70%));
     text-shadow: grey 50px;
     margin-left: 5%;
     margin-right: 5%;
-    margin-bottom: .5%;
-    margin-top: .5%;
+    margin-bottom: .8%;
+    margin-top: .8%;
 }
 
 #title
-    {text-align: center; color: maroon; text-decoration-line: underline;}
+    {text-align: center; 
+    font-size: 4em;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: -webkit-linear-gradient(#eee, rgb(0, 59, 51));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    }
+    
+.title {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+h3 {
+    text-align: right;
+    font-size: 1.5em;
+}
 
 #filter {
     margin-top: 30px;
