@@ -3,6 +3,8 @@ import { NgModel, FormBuilder, FormGroup, Validators, AbstractControl } from '@a
 import { MovieService } from 'src/app/core/services/movie.service';
 import { take } from 'rxjs/internal/operators/take';
 import { Movie } from 'src/app/core/models/movie';
+import { Observable } from 'rxjs';
+import { tap, debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search',
@@ -12,7 +14,7 @@ import { Movie } from 'src/app/core/models/movie';
 
 export class SearchComponent implements OnInit {
 
-  @Output() movies : EventEmitter<Movie[]> = new EventEmitter<Movie[]>();
+  @Output() movies : EventEmitter<Observable<Movie[]>> = new EventEmitter<Observable<Movie[]>>();
 
   public searchForm: FormGroup;
 
@@ -33,32 +35,29 @@ export class SearchComponent implements OnInit {
           Validators.minLength(2)])
       ]
     });
+    this.search.valueChanges
+      .pipe(
+        debounceTime(100),
+        distinctUntilChanged(),
+        map(() => {
+          console.log('Value of search : ' + this.search)
+          this.onClick();
+        })
+      ).subscribe();
   }
 
-  public onClick() : void {
+  private onClick() : void {
     if (this.search.value.trim().length > 0) {
-      let movies : Movie[] = [];
-      this.movieService.byTitle(this.search.value.trim())
-      .pipe(take(1)) 
-      .subscribe((response: Movie[]) => {
-        console.log(`Emit : ${JSON.stringify(response)}`)
-        this.movies.emit(response);
-      });
+        this.movies.emit(
+          this.movieService.byTitle(this.search.value.trim())
+        );
     }
   }
 
   public reload(): void {
     if (this.search.value.trim().length == 0) {
-      let movies : Movie[] = [];
-      this.movieService.all()
-      .pipe(take(1)) 
-      .subscribe((response: Movie[]) => {
-        movies = response.map((movie: Movie) => {
-          return new Movie().deserialize(movie);
-        });
-        console.log(`Emit : ${JSON.stringify(movies)}`)
-        this.movies.emit(movies);
-      });
+        this.movies.emit(
+          this.movieService.all());
     }
   }
 }

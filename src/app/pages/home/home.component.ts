@@ -3,6 +3,7 @@ import { MovieService } from 'src/app/core/services/movie.service';
 
 import { take } from 'rxjs/operators';
 import { Movie } from './../../core/models/movie'
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -13,27 +14,22 @@ export class HomeComponent {
 
   public title: string = 'movies';
   public year: number = 0;
-  public movies: Movie[] = [];
+  public movies: Observable<Movie[]>
   public years: number[] = [];
+  private yearSubscription: Subscription;
 
+public constructor(private movieService: MovieService) { }
 
-public constructor(private movieService: MovieService) {
+ngOnInit() {
+  this.movies = this.movieService.all();
 
-  const years: Set<number> = new Set<number>();
-
-    this.movieService.all()
-    .pipe(
-      take(1) // Take the only one response of the observable
-      ) 
-    .subscribe((response: any[]) => {
-      this.movies = response;
-      this.movies.map((movie: Movie) => {
-        years.add(movie.year);
-        return new Movie().deserialize(movie)
-      });
-      this.years = Array.from(years).sort();
-    });
-  }
+  this.yearSubscription = this.movieService.years$
+    .subscribe((_years) => {
+      console.log('Years was updated : ' + JSON.stringify(_years));
+      this.years = _years;
+    })
+  
+}
 
   public receiveMovies($event): void {
     this.movies = $event;

@@ -25,14 +25,20 @@ img {
     width: 200px;
 }
 
-#liste {
-    display: flex;
-    flex-direction: row ;
+.movies {
+    display: inline-flex;
+    flex-direction: row;
     flex-wrap: wrap;
+    width: auto;
+    margin-top: .7%;
+    margin-left: .7%;
+    margin-right: .7%;
 }
 
 .card {
-    flex-basis: 20%;
+    flex-grow: 1;
+    height: 120px;
+    width: 200px;
     background-image: radial-gradient(#eee, rgb(88, 90, 241, 70%));
     text-shadow: grey 50px;
     margin-left: 5%;
@@ -54,13 +60,19 @@ img {
     }
     
 .title {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
     font-size: 1.5em;
+    color: midnightblue;
+    font-weight: bold;
 }
 
 h3 {
     text-align: right;
-    font-size: 1.5em;
+    vertical-align: bottom;
+    font-size: 1.2em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: midnightblue;
 }
 
 #filter {

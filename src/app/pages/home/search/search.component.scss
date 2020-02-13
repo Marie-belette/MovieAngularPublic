@@ -1,11 +1,9 @@
-button {
-    border: solid;
-    background-color: whitesmoke;
-    margin-left: 2%;
+mat-label {
+    color : hsl(200, 52%, 25%);
 }
 
 mat-form-field {
     margin-top: 2%;
     margin-left: 2%;
-    width: 100%;
+    width: 150%;
 }
