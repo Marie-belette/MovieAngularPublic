@@ -1,1 +1,33 @@
-<p>login works!</p>
+<form [formGroup]="loginForm">
+
+<div class="container">
+    <mat-form-field class="">
+      <mat-label>login</mat-label>
+      <input matInput
+      type="text"
+      placeholder="Username"
+      formControlName="login">
+      <mat-error *ngIf="login.touched && login.invalid">
+          Your username is required and must have at least 5 characters.
+      </mat-error>
+    </mat-form-field>
+   
+    <mat-form-field class="">
+      <mat-label>Password</mat-label>
+      <input matInput
+      type="password"
+      placeholder="Password"
+      formControlName="password">
+      <mat-error *ngIf="login.touched && login.invalid">
+        Your password is required and must have at least 8 characters.
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button
+    (click)="doLogin()"
+    [disabled]="loginForm.invalid">Log in!</button>
+
+  </div>
+
+</form>
+  

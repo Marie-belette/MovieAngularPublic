@@ -10,7 +10,7 @@
       <mat-label>By years</mat-label>
      <mat-select [(ngModel)]="year">
         <mat-option [value]="0">All</mat-option>
-        <mat-option *ngFor="let year of movieService.years | async" [value]="year">
+        <mat-option *ngFor="let year of years" [value]="year">
         {{year}}
         </mat-option>
       </mat-select>

@@ -19,7 +19,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatCardModule,
     MatInputModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
   ],
   exports: [
     MatSelectModule,
@@ -27,7 +27,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatCardModule,
     MatInputModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
   ]
 })
 export class MaterialModule { }
