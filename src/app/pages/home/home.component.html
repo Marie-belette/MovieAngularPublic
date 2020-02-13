@@ -20,7 +20,7 @@
 </mat-toolbar>
 
 <div *ngFor="let movie of movies"> 
-  <div class="movie" *ngIf="(movie.year == year) || year == 0">
+  <div id='liste' class="movie" *ngIf="(movie.year == year) || year == 0">
     <mat-card class='card'>
     <h2 class="title">{{ movie.title }}</h2>
     <h3>{{ movie.year }}</h3>

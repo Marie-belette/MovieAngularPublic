@@ -41,11 +41,8 @@ export class SearchComponent implements OnInit {
       this.movieService.byTitle(this.search.value.trim())
       .pipe(take(1)) 
       .subscribe((response: Movie[]) => {
-        movies = response.map((movie: Movie) => {
-          return new Movie().deserialize(movie);
-        });
-        console.log(`Emit : ${JSON.stringify(movies)}`)
-        this.movies.emit(movies);
+        console.log(`Emit : ${JSON.stringify(response)}`)
+        this.movies.emit(response);
       });
     }
   }

@@ -25,8 +25,14 @@ img {
     width: 200px;
 }
 
+#liste {
+    display: flex;
+    flex-direction: row ;
+    flex-wrap: wrap;
+}
+
 .card {
-    width:auto;
+    flex-basis: 20%;
     background-image: radial-gradient(#eee, rgb(88, 90, 241, 70%));
     text-shadow: grey 50px;
     margin-left: 5%;

@@ -26,7 +26,8 @@ public constructor(private movieService: MovieService) {
       take(1) // Take the only one response of the observable
       ) 
     .subscribe((response: any[]) => {
-      this.movies = response.map((movie: Movie) => {
+      this.movies = response;
+      this.movies.map((movie: Movie) => {
         years.add(movie.year);
         return new Movie().deserialize(movie)
       });
