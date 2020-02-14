@@ -3,16 +3,16 @@
         <ul>
             <li>
                 <a [routerLink]="['home']">
-                    <mat-icon>home</mat-icon>
+                    <mat-icon id='home'>home</mat-icon>
                 </a>
             </li>
             <li *ngIf="!user">
                 <a [routerLink]="['login']">
-                    <mat-icon>account_circle</mat-icon>
+                    <mat-icon id='in'>account_circle</mat-icon>
                 </a>
             </li>
             <li *ngIf="user" (click)='doLogout()'>
-                <mat-icon>cancel</mat-icon>
+                <mat-icon id='out'>cancel</mat-icon>
             </li>
         </ul>
     </nav>
