@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { userInfo } from 'os';
 import { UserService } from '../services/user.service';
 
 @Injectable({
@@ -16,7 +15,7 @@ export class LoginGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if(this.userService.isAuthenticated) {
+      if(this.userService.user) {
         this.router.navigate(['home']);
         return false;
       }

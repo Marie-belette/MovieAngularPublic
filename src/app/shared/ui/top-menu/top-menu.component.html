@@ -6,12 +6,12 @@
                     <mat-icon>home</mat-icon>
                 </a>
             </li>
-            <li *ngIf="!userService.isAuthenticated">
+            <li *ngIf="!user">
                 <a [routerLink]="['login']">
                     <mat-icon>account_circle</mat-icon>
                 </a>
             </li>
-            <li *ngIf="userService.isAuthenticated" (click)='doLogout()'>
+            <li *ngIf="user" (click)='doLogout()'>
                 <mat-icon>cancel</mat-icon>
             </li>
         </ul>
