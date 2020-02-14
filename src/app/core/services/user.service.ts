@@ -15,6 +15,10 @@ export class UserService {
         password: 'terminatotoro'
       }
     );
+    const userAsString: string = localStorage.getItem('user');
+    if (userAsString !== null) {
+      this.isAuthenticated = true;
+    }
    }
 
   public authenticate(user: any): boolean {
@@ -29,5 +33,11 @@ export class UserService {
     return true;
   }
   return false;
-}
+  }
+
+    public logout(): void {
+      localStorage.removeItem('user');
+      this.isAuthenticated = false;
+    }
+
 }

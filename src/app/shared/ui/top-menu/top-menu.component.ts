@@ -12,7 +12,11 @@ export class TopMenuComponent implements OnInit {
     public userService: UserService
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+  }
+
+  public doLogout(): void {
+    this.userService.logout();
   }
 
 }

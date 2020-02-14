@@ -1,20 +1,22 @@
+<head>
+
+</head>
+
 <header>
     <nav>
         <ul>
             <li>
                 <a [routerLink]="['home']">
-                    Home
+                    <mat-icon>home</mat-icon>
                 </a>
             </li>
             <li *ngIf="!userService.isAuthenticated">
                 <a [routerLink]="['login']">
-                    Login
+                    <mat-icon>account_circle</mat-icon>
                 </a>
             </li>
-            <li *ngIf="userService.isAuthenticated">
-                <a>
-                    Logout
-                </a>
+            <li *ngIf="userService.isAuthenticated" (click)='doLogout()'>
+                <mat-icon>cancel</mat-icon>
             </li>
         </ul>
     </nav>

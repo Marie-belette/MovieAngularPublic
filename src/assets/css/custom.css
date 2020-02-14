@@ -1,0 +1,88 @@
+:root {
+    --menu-background: rgba(117, 175, 138, 1);
+    --menu-color: rgb(255, 255, 255);
+}
+
+/**
+* Top bar design
+**/
+div#sticky-top-bar {
+    position: fixed;
+    width: 100%;
+}
+
+div#sticky-top-bar header {
+    background-color: var(--menu-background);
+    color: var(--menu-color);
+}
+
+div#sticky-top-bar header h1 {
+    line-height: 2em;
+    vertical-align: middle;
+    text-align: center;
+}
+
+/**
+* Only for media that are screens and with max-width of value 480px
+**/
+@media screen and (max-width: 480px) {
+    div#sticky-top-bar header h1 {
+        font-size: 3vh;
+    }
+}
+
+div#sticky-top-bar header nav.navbar-dark.bg-dark {
+    background-color:inherit!important;
+    color: inherit;
+}
+
+/**
+* This rule apply for last div element in the header
+**/
+div#sticky-top-bar header div.col-3:last-child {
+    text-align: right;
+    padding-right: 45px;
+}
+
+div#sticky-top-bar header div.col-3 span {
+    line-height: 3.5em;
+    font-size: 1.3em;
+    vertical-align: middle;
+}
+
+/**
+* Main design
+**/
+main {
+    position: relative;
+    top: 150px;
+}
+
+/**
+* Loader design
+**/
+.outer-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(128, 128, 128, .7);
+}
+
+.outer-loader .inner-loader {
+    position: relative;
+    top: 50%;
+    width: 13em;
+    height: 11em;
+    margin: 0 auto;
+    transform: translateY(-50%);
+    background-color: #fff;
+}
+
+.outer-loader .inner-loader img {
+    display: block;
+    height: inherit;
+    width: inherit;
+}
+
