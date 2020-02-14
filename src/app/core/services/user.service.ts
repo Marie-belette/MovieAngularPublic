@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
   private _registeredUsers: any[];
+  public isAuthenticated: boolean = false;
 
   constructor() {
     this._registeredUsers = new Array<string>();
@@ -24,6 +25,7 @@ export class UserService {
       'user',
       JSON.stringify(user)
     );
+    this.isAuthenticated = true;
     return true;
   }
   return false;
