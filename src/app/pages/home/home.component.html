@@ -22,7 +22,11 @@
 <div *ngFor="let movie of movies | async" class="movies"> 
   <div class="box" *ngIf="(movie.year == year) || year == 0">
     <mat-card class='card'>
-    <h2 class="title">{{ movie.title }}</h2>
+    <h2 class="title"> 
+      <a [routerLink]="['../', 'movie', movie.idMovie]">
+      {{ movie.title }}
+      </a>
+    </h2>
     <h3>{{ movie.year }}</h3>
     <img src="{{movie.image}}">
     </mat-card>
