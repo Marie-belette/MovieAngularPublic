@@ -1,4 +1,4 @@
-$default-font-color: hsl(200, 52%, 25%);
+$default-font-color: midnightblue;
 
 div {
     color: $default-font-color;
@@ -36,6 +36,7 @@ img {
 }
 
 .card {
+    display: block;
     flex-grow: 1;
     height: 120px;
     width: 200px;
@@ -45,6 +46,12 @@ img {
     margin-right: 5%;
     margin-bottom: .8%;
     margin-top: .8%
+}
+
+.card-footer {
+    display: inline-flex;
+    background: transparent;
+    align-self: baseline;
 }
 
 #title

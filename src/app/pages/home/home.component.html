@@ -23,12 +23,24 @@
   <div class="box" *ngIf="(movie.year == year) || year == 0">
     <mat-card class='card'>
     <h2 class="title"> 
-      <a [routerLink]="['../', 'movie', movie.idMovie]">
+      <a>
       {{ movie.title }}
       </a>
     </h2>
+
+  <div class="card-footer">
     <h3>{{ movie.year }}</h3>
-    <img src="{{movie.image}}">
+    <div id='more' *ngIf="user; then logged else unlogged"></div>
+      <ng-template #logged>
+        <mat-icon [routerLink]="['../', 'movie', movie.idMovie]">visibility</mat-icon>
+      </ng-template>
+      <ng-template  #unlogged>
+        <mat-icon (click)="snackbarToLogin()">visibility</mat-icon>
+      </ng-template>
+  </div>
+
+      <img src="{{movie.image}}">
+
     </mat-card>
   </div>
 </div>

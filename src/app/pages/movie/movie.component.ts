@@ -24,4 +24,6 @@ export class MovieComponent implements OnInit {
     });
   }
 
+
+
 }
