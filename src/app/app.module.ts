@@ -14,6 +14,7 @@ import { MaterialModule } from './shared/material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from './pages/home/search/search.component';
 import { MovieComponent } from './pages/movie/movie.component';
+import { ModifyComponent } from './pages/movie/modify/modify.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MovieComponent } from './pages/movie/movie.component';
     HomeComponent,
     LoginComponent,
     SearchComponent,
-    MovieComponent
+    MovieComponent,
+    ModifyComponent
   ],
   imports: [
     BrowserModule,

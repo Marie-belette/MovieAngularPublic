@@ -1,0 +1,29 @@
+
+<form [formGroup]="movieForm" id="modification">
+    <mat-form-field class="" appearance="fill">
+      <mat-label>Title</mat-label>
+      <input matInput 
+      formControlName="title"
+      placeholder={{title}}>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+        <mat-label>Year</mat-label>
+        <input matInput formControlName="year">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+        <mat-label>Synopsis</mat-label>
+        <textarea matInput formControlName="synopsis"></textarea>
+    </mat-form-field>
+
+</form>
+
+<button
+    mat-raised-button
+    color="primary"
+    (click)="doUpdate()"
+    [disabled]="movieForm.invalid">
+    Update
+</button>
+  

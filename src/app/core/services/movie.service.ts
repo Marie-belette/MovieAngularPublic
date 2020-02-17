@@ -1,7 +1,7 @@
 import { Injectable, ɵALLOW_MULTIPLE_PLATFORMS } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Movie } from './../models/movie';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 
@@ -75,6 +75,23 @@ export class MovieService {
         return response;
         })
       );
+  }
+
+  public update(movie: any): Observable<HttpResponse<any>> {
+    const apiRoot: string = `${environment.apiRoot}movie/modify`;
+
+    return this.httpClient.post(
+      apiRoot,
+      movie,
+      {
+        observe: 'response'
+      }
+    ).pipe(
+      take(1),
+      map((response: HttpResponse<any>) => {
+        return response;
+      })
+    )
   }
 }
 
