@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Validators, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
 import { HttpResponse } from '@angular/common/http';
 import { take } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-modify',
@@ -17,7 +18,8 @@ export class ModifyComponent implements OnInit {
   constructor(
     private movieService: MovieService, 
     private route: ActivatedRoute, 
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    public snackBar: MatSnackBar) { }
 
   public get synopsis(): AbstractControl {
     return this.movieForm.controls.synopsis;
@@ -59,7 +61,8 @@ export class ModifyComponent implements OnInit {
         take(1)
       ).subscribe((response: HttpResponse<any>) => {
         console.log(`Update was done with : ${response.status}`);
-      });
+      })
+      this.snackBar.open('Movie updated','',{duration: 2000, verticalPosition: 'top'});
   }
 
 }

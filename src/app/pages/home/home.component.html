@@ -30,7 +30,7 @@
 
   <div class="card-footer">
     <h3>{{ movie.year }}</h3>
-    <div id='more' *ngIf="user; then logged else unlogged"></div>
+    <div *ngIf="user; then logged else unlogged"></div>
       <ng-template #logged>
         <mat-icon [routerLink]="['../', 'movie', movie.idMovie]">visibility</mat-icon>
       </ng-template>

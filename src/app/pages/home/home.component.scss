@@ -49,9 +49,15 @@ img {
 }
 
 .card-footer {
-    display: inline-flex;
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    top: 50px;
     background: transparent;
-    align-self: baseline;
+}
+
+mat-icon {
+    cursor: pointer;
 }
 
 #title

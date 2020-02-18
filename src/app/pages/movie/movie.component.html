@@ -1,10 +1,19 @@
 <ul>
     <li>{{movie | json}}</li>
     <li>
-        <a [routerLink]="['modify']">
+        <button 
+            mat-raised-button
+            color="primary"
+            [routerLink]="['modify']">
             Modify movie
-        </a>
+        </button>
     </li>
+    <button
+        mat-raised-button
+        color="primary"
+        (click)="deleteMovie()">
+    Delete
+</button>
 </ul>
 
 

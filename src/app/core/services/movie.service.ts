@@ -2,8 +2,8 @@ import { Injectable, ɵALLOW_MULTIPLE_PLATFORMS } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Movie } from './../models/movie';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable, of, BehaviorSubject } from 'rxjs';
-import { take, map } from 'rxjs/operators';
+import { Observable, of, BehaviorSubject, throwError } from 'rxjs';
+import { take, map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -67,26 +67,36 @@ export class MovieService {
 
   public byId(id: number): Observable<any> {
     const apiRoot: string = `${environment.apiRoot}movie/${id}`;
-    return this.httpClient.get<any>(apiRoot)
+    return this.httpClient.get<any>(apiRoot, {observe: 'response'})
     .pipe(
       take(1),
       map((response) => {
-        console.log(JSON.stringify(response));
-        return response;
+        return response.body;
+        }),
+        catchError((error: any) => {
+          console.log(`Something went wrong : ${JSON.stringify(error)}`);
+          return throwError(error.status)
         })
-      );
+    );
   }
 
   public update(movie: any): Observable<HttpResponse<any>> {
     const apiRoot: string = `${environment.apiRoot}movie/modify`;
 
-    return this.httpClient.post(
-      apiRoot,
-      movie,
-      {
-        observe: 'response'
-      }
-    ).pipe(
+    return this.httpClient.post(apiRoot, movie,{observe: 'response'})
+    .pipe(
+      take(1),
+      map((response: HttpResponse<any>) => {
+        return response;
+      })
+    )
+  }
+
+  public delete(movie: Movie): Observable<any> {
+    const apiRoot: string = `${environment.apiRoot}movie/${movie.idMovie}`;
+
+    return this.httpClient.delete(apiRoot)
+    .pipe(
       take(1),
       map((response: HttpResponse<any>) => {
         return response;
