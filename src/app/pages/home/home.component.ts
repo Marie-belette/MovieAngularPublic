@@ -50,10 +50,11 @@ ngOnInit() {
     console.log(`Received ${JSON.stringify(this.movies)}`);
   };
 
-  public snackbarToLogin() {
+  public snackbarToLogin(idMovie: number) {
     this.snackBar.open('You are not yet connected','',{duration: 1500, verticalPosition: 'top'})
     .afterDismissed().subscribe((a) => {
-      this.router.navigate(['login'])}
+      this.router.navigate(['login'], {state: {movie: idMovie}})
+    }
     )}
 
 }

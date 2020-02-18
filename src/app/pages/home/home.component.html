@@ -35,7 +35,7 @@
         <mat-icon [routerLink]="['../', 'movie', movie.idMovie]">visibility</mat-icon>
       </ng-template>
       <ng-template  #unlogged>
-        <mat-icon (click)="snackbarToLogin()">visibility</mat-icon>
+        <mat-icon (click)="snackbarToLogin(movie.idMovie)">visibility</mat-icon>
       </ng-template>
   </div>
 

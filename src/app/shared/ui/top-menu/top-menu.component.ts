@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/core/services/user.service';
 import { UserInterface } from 'src/app/core/models/user-interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-top-menu',
@@ -11,7 +12,8 @@ export class TopMenuComponent implements OnInit {
   public user : UserInterface;
 
   constructor(
-    public userService: UserService
+    public userService: UserService,
+    public router: Router
   ) { }
 
   ngOnInit() {
@@ -22,6 +24,7 @@ export class TopMenuComponent implements OnInit {
 
   public doLogout(): void {
     this.userService.logout();
+    this.router.navigate(['home']);
   }
 
 }
