@@ -6,7 +6,7 @@ import { UserService } from 'src/app/core/services/user.service';
 import { UserInterface } from 'src/app/core/models/user-interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { take } from 'rxjs/operators';
+import { take, map } from 'rxjs/operators';
 import { Movie } from './../../core/models/movie'
 import { Observable, Subscription } from 'rxjs';
 import { WebSocketSubject } from 'rxjs/webSocket';
@@ -28,7 +28,8 @@ export class HomeComponent {
   private yearSubscription: Subscription;
   public user: UserInterface;
   private socket$: WebSocketSubject<any>;
-  private timesLiked: number = 0;
+  public movie = Movie;
+  public timesLiked: number;
 
   public constructor(
     private movieService: MovieService, 
@@ -39,7 +40,26 @@ export class HomeComponent {
   ngOnInit() {
     this.socket$ = new WebSocketSubject<any>(environment.wssAddress);
     this.socket$.subscribe((socketMessage: any) => {
-      console.log(`Something comes from wsServer : ${JSON.stringify(socketMessage)}`)
+
+      console.log(JSON.stringify(socketMessage));
+      if(socketMessage._data === 'timesLiked') {
+        // Update interface for this movie
+        let movie: Movie = new Movie().deserialize(socketMessage._message);
+        console.log(`Update comes from wsServer : ${JSON.stringify(movie)}`);
+
+        // Update movie in observable
+        this.movies = this.movies.pipe(
+          map((movies: Movie[]): Movie[] => {
+            let movieIndex: number = movies.findIndex(
+              (obj: Movie, index: number) => obj.idMovie == movie.idMovie);
+            console.log(`Replace movie at rom ${movieIndex}`);
+            movies[movieIndex] = movie;
+            return movies;
+          })
+        );
+      } else {
+        console.log(socketMessage);
+      }
     },
     (err) => console.error('Erreur levée : ' + JSON.stringify(err)),
     () => console.warn('Completed!')
@@ -72,11 +92,25 @@ export class HomeComponent {
     }
   )};
 
-  public addToList() {
-    console.log(`movie added to wishlist`);
-    this.timesLiked++;
-//this.getParams; 
-//this.router.navigate(['../', 'movie', idMovie])
+  public likeIt(movie: Movie): void {
+    movie.timesLiked += 1;
+
+    // Emit a new update to ws...
+    const message: any = {
+      message: 'timesLiked',
+      data: movie,
+    };
+    this.socket$.next(message);
+
+    // Update the observable (retains values)
+    this.movies = this.movies.pipe(
+      map((movies: Movie[]): Movie[] => {
+        let movieIndex: number = movies.findIndex(
+          (obj: Movie, index: number) => obj.idMovie == movie.idMovie);
+        movies[movieIndex] = movie;
+        return movies;
+      })
+    );
   }
 
   

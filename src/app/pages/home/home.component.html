@@ -37,8 +37,10 @@
       <ng-template  #unlogged>
         <mat-icon (click)="snackbarToLogin(movie.idMovie)">visibility</mat-icon>
       </ng-template>
-      <mat-icon id="heart" (click)="addToList()">favorite_border</mat-icon>
-      <a>{{ timesLiked }}</a>
+      <mat-icon id="heart" (click)="likeIt(movie)" *ngIf="movie.timesLiked == 0">favorite_border</mat-icon>
+      <mat-icon *ngIf="movie.timesLiked > 0"
+        matBadge="{{ movie.timesLiked }}"
+        matBadgeColor="warn">favorite</mat-icon>
   </div>
 
       <img src="{{movie.image}}">
