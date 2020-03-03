@@ -1,0 +1,9 @@
+{
+    "global" : {
+        "title": "Films",
+        "byYears": "Par année",
+        "byAlphabeticalOrder": "Film",
+        "placeHolderTitle": "Titre",
+        "placeHolderAll": "Tous"
+    }
+}

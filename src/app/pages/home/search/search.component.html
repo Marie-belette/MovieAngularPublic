@@ -1,11 +1,11 @@
 
 <form [formGroup]="searchForm" class="film-form">
     <mat-form-field class="full-width">
-      <mat-label>Movie</mat-label>
+      <mat-label>{{ 'global.byAlphabeticalOrder' | translate}}</mat-label>
       <input 
         type="title" 
         matInput 
-        placeholder="Title" 
+        placeholder= "{{ 'global.placeHolderTitle' | translate }}"
         formControlName="search"
         (ngModelChange)="reload()">
     </mat-form-field>
