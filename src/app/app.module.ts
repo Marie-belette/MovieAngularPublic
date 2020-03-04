@@ -23,6 +23,7 @@ import {LOCATION_INITIALIZED} from '@angular/common';
 import {TranslateModule, TranslateLoader, TranslateService} from '@ngx-translate/core';
 import { TranslationService } from './core/services/translation.service';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ElapsedTimePipe } from './shared/pipes/elapsed-time.pipe';
 
 // Define a function that invokes TranslationService
 export function translationInitializerFactory(
@@ -51,7 +52,8 @@ export function translationInitializerFactory(
     LoginComponent,
     SearchComponent,
     MovieComponent,
-    ModifyComponent
+    ModifyComponent,
+    ElapsedTimePipe
   ],
   imports: [
     BrowserModule,

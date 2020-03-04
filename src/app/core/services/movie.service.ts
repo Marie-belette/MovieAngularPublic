@@ -44,7 +44,7 @@ export class MovieService {
           return response.map((item) => {
             this._years.add(item.year);
             this.years$.next(Array.from(this._years).sort());
-            return new Movie(this.httpClient).deserialize(item)
+            return new Movie().deserialize(item)
           });
         })
       );
@@ -62,7 +62,7 @@ export class MovieService {
             return response.map((item) => {
               this._years.add(item.year);
             this.years$.next(Array.from(this._years).sort());
-            return new Movie(this.httpClient).deserialize(item)
+            return new Movie().deserialize(item)
         });
       })
       )

@@ -36,7 +36,7 @@
     </h2>
 
   <div class="card-footer">
-    <h3>{{ movie.year }} ({{movie.elapsedTime}})</h3>
+    <h3>{{movie.year}}, {{ movie.year | elapsedTime | async }}</h3>
     <div *ngIf="user; then logged else unlogged"></div>
       <ng-template #logged>
         <mat-icon [routerLink]="['../', 'movie', movie.idMovie]">visibility</mat-icon>
