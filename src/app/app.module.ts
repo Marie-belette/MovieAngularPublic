@@ -72,7 +72,7 @@ export function translationInitializerFactory(
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true},
-    {provide: APP_INITIALIZER,
+    {provide: APP_INITIALIZER, // Token Angular fourni lors de l'initialisation de l'application
     useFactory: translationInitializerFactory,
     deps: [
       TranslateService,
