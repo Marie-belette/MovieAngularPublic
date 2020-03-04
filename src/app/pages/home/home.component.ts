@@ -97,7 +97,6 @@ export class HomeComponent {
 
     this.yearSubscription = this.movieService.years$
       .subscribe((_years) => {
-        console.log('Years was updated : ' + JSON.stringify(_years));
         this.years = _years;
       })
   
