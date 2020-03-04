@@ -13,6 +13,7 @@ export class MovieService {
   private _years: Set<number> = new Set<number>();
   public years$: BehaviorSubject<number[]> =
     new BehaviorSubject<number[]>(Array.from(this._years).sort());
+  public moviesCount: number = 0;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -39,10 +40,11 @@ export class MovieService {
       .pipe(
         take(1),
         map((response) => {
+          this.moviesCount = response.length;
           return response.map((item) => {
             this._years.add(item.year);
             this.years$.next(Array.from(this._years).sort());
-            return new Movie().deserialize(item)
+            return new Movie(this.httpClient).deserialize(item)
           });
         })
       );
@@ -56,10 +58,11 @@ export class MovieService {
       .pipe(
         take(1),
         map((response) => {
+          this.moviesCount = response.length;
             return response.map((item) => {
               this._years.add(item.year);
             this.years$.next(Array.from(this._years).sort());
-            return new Movie().deserialize(item)
+            return new Movie(this.httpClient).deserialize(item)
         });
       })
       )

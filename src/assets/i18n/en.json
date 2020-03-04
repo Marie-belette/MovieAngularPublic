@@ -4,6 +4,9 @@
         "byYears": "By years",
         "byAlphabeticalOrder": "Movie",
         "placeHolderTitle": "Title",
-        "placeHolderAll": "All"
+        "placeHolderAll": "All",
+        "annonceNombreFilms": "movies match your criteria",
+        "annonceUnSeulFilm": "movie matches your criteria",
+        "annonceZeroFilm": "No movie matches your criteria"
     }
 }

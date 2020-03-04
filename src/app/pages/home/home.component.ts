@@ -13,6 +13,7 @@ import { WebSocketSubject } from 'rxjs/webSocket';
 
 import { environment } from './../../../environments/environment';
 import { transition, animate, trigger, state, style } from '@angular/animations';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -57,9 +58,10 @@ export class HomeComponent {
   private socket$: WebSocketSubject<any>;
   public movie = Movie;
   public timesLiked: number;
+  private httpClient: HttpClient;
 
   public constructor(
-    private movieService: MovieService, 
+    public movieService: MovieService, 
     public userService: UserService, 
     public snackBar: MatSnackBar,
     private router: Router) { }
@@ -71,7 +73,7 @@ export class HomeComponent {
       console.log(JSON.stringify(socketMessage));
       if(socketMessage._data === 'timesLiked') {
         // Update interface for this movie
-        let movie: Movie = new Movie().deserialize(socketMessage._message);
+        let movie: Movie = new Movie(this.httpClient).deserialize(socketMessage._message);
         console.log(`Update comes from wsServer : ${JSON.stringify(movie)}`);
 
         // Update movie in observable

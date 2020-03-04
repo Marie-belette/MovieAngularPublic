@@ -17,6 +17,13 @@
   </mat-form-field>
   </div>
 
+  <div id='moviesNumber'>
+  <h3 *ngIf="(movies | async) ?.length > 1">{{ (movies | async) ?.length }} {{'global.annonceNombreFilms' | translate}}</h3>
+  <h3 *ngIf="(movies | async) ?.length == 1">{{ (movies | async) ?.length }} {{'global.annonceUnSeulFilm' | translate}}</h3>
+  <h3 *ngIf="(movies | async) ?.length == 0">{{'global.annonceZeroFilm' | translate}}</h3>
+  </div>
+
+
 </mat-toolbar>
 
 <div *ngFor="let movie of movies | async" class="movies"> 
@@ -29,7 +36,7 @@
     </h2>
 
   <div class="card-footer">
-    <h3>{{ movie.year }}</h3>
+    <h3>{{ movie.year }} ({{movie.elapsedTime}})</h3>
     <div *ngIf="user; then logged else unlogged"></div>
       <ng-template #logged>
         <mat-icon [routerLink]="['../', 'movie', movie.idMovie]">visibility</mat-icon>
