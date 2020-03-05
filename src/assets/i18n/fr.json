@@ -8,5 +8,12 @@
         "annonceNombreFilms": "films correspondent à vos critères",
         "annonceUnSeulFilm": "film correspond à vos critères",
         "annonceZeroFilm": "Aucun film ne correspond à vos critères"
+    },
+
+    "moviesListing" : {
+        "lessThanOneYear": "tout jeune",
+        "lessThanTwoYears": "commence à avoir du poil au menton",
+        "lessThanFiveYears": "dans la fleur de l'âge",
+        "moreThanFiveYears": "presque un naphta, pépé"
     }
 }

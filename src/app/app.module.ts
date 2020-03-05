@@ -24,6 +24,7 @@ import {TranslateModule, TranslateLoader, TranslateService} from '@ngx-translate
 import { TranslationService } from './core/services/translation.service';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ElapsedTimePipe } from './shared/pipes/elapsed-time.pipe';
+import { RegistrationComponent } from './pages/registration/registration.component';
 
 // Define a function that invokes TranslationService
 export function translationInitializerFactory(
@@ -53,7 +54,8 @@ export function translationInitializerFactory(
     SearchComponent,
     MovieComponent,
     ModifyComponent,
-    ElapsedTimePipe
+    ElapsedTimePipe,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,

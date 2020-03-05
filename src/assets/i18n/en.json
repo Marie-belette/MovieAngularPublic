@@ -8,5 +8,12 @@
         "annonceNombreFilms": "movies match your criteria",
         "annonceUnSeulFilm": "movie matches your criteria",
         "annonceZeroFilm": "No movie matches your criteria"
+    },
+
+    "moviesListing": {
+        "lessThanOneYear": "so young",
+        "lessThanTwoYears": "zit face",
+        "lessThanFiveYears": "all grown-up",
+        "moreThanFiveYears": "granpa still kicking ass"
     }
 }

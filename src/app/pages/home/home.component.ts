@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MovieService } from 'src/app/core/services/movie.service';
 import { Router } from '@angular/router';
 
@@ -13,6 +13,7 @@ import { WebSocketSubject } from 'rxjs/webSocket';
 
 import { environment } from './../../../environments/environment';
 import { transition, animate, trigger, state, style } from '@angular/animations';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
@@ -46,7 +47,7 @@ import { transition, animate, trigger, state, style } from '@angular/animations'
   ]
 })
 
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
   public title: string = 'movies';
   public year: number = 0;
@@ -57,12 +58,14 @@ export class HomeComponent {
   private socket$: WebSocketSubject<any>;
   public movie = Movie;
   public timesLiked: number;
+  public translationChange$: any;
 
   public constructor(
     public movieService: MovieService, 
     public userService: UserService, 
     public snackBar: MatSnackBar,
-    private router: Router) { }
+    private router: Router,
+    private translateService: TranslateService) { }
 
   ngOnInit() {
     this.socket$ = new WebSocketSubject<any>(environment.wssAddress);
@@ -94,6 +97,11 @@ export class HomeComponent {
     this.socket$.next('Ping');
   
     this.movies = this.movieService.all();
+
+    this.translationChange$ = this.translateService.onTranslationChange;
+    this.translationChange$.subscribe((event: any) => {
+      console.log('Language was changed');
+    });
 
     this.yearSubscription = this.movieService.years$
       .subscribe((_years) => {
@@ -148,5 +156,10 @@ export class HomeComponent {
       movie.animationState = 'initial';
       setTimeout(() => movie.animationState = 'final', 900);
      }, 1000);
-}
+  }
+
+  // ngOnDestroy() {
+  // this.yearSubscription.unsubscribe();
+  //  this.translationChange$.unsubscribe();
+  //}
 }
