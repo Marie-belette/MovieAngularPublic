@@ -6,6 +6,7 @@ import { LoginGuard } from './core/guards/login.guard';
 import { MovieComponent } from './pages/movie/movie.component';
 import { ModifyComponent } from './pages/movie/modify/modify.component';
 import { MovieResolver } from './core/resolver/movie-resolver';
+import { RegistrationComponent } from './pages/registration/registration.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,10 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
     canActivate: [LoginGuard]
+  },
+  {
+    path: 'login/registration',
+    component: RegistrationComponent,
   },
   {
     path: 'movie/:id/modify',
