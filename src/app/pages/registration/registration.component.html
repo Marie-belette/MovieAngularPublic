@@ -1,7 +1,7 @@
 <form [formGroup]="registerForm">
 
 <mat-form-field appearance="fill">
-    <mat-label>Username</mat-label>
+    <mat-label>{{'registerInfo.username' | translate}}</mat-label>
     <input matInput 
     type="text"
     formControlName="username">
@@ -9,7 +9,7 @@
   <br>
 
   <mat-form-field appearance="fill">
-    <mat-label>Password</mat-label>
+    <mat-label>{{'registerInfo.password' | translate}}</mat-label>
     <input matInput
     type="text"
     formControlName="password">
@@ -17,7 +17,7 @@
   <br>
 
   <mat-form-field appearance="fill">
-    <mat-label>First Name</mat-label>
+    <mat-label>{{'registerInfo.firstName' | translate}}</mat-label>
     <input matInput
     type="text"
     formControlName="firstName">
@@ -25,7 +25,7 @@
   <br>
 
   <mat-form-field appearance="fill">
-    <mat-label>Last Name</mat-label>
+    <mat-label>{{'registerInfo.lastName' | translate}}</mat-label>
     <input matInput
     type="text"
     formControlName="lastName">
@@ -33,7 +33,7 @@
   <br>
 
   <mat-form-field appearance="fill">
-    <mat-label>E-mail adress</mat-label>
+    <mat-label>{{'registerInfo.eMail' | translate}}</mat-label>
     <input matInput
     type="text"
     formControlName="eMail">
@@ -44,4 +44,4 @@
 
   <button mat-raised-button
   [disabled]="registerForm.invalid"
-  (click)="register()">Register!</button>
+  (click)="register()">{{'registerInfo.register' | translate}}</button>

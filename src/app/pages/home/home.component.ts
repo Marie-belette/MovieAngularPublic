@@ -98,9 +98,14 @@ export class HomeComponent implements OnInit {
   
     this.movies = this.movieService.all();
 
-    this.translationChange$ = this.translateService.onTranslationChange;
+    this.translationChange$ = this.translateService.onLangChange;
     this.translationChange$.subscribe((event: any) => {
       console.log('Language was changed');
+      this.movies = this.movies.pipe(
+        map((movies: Movie[]): Movie[] => {
+          return movies;
+        })
+      );
     });
 
     this.yearSubscription = this.movieService.years$

@@ -2,36 +2,36 @@
 
 <div class="container">
     <mat-form-field class="">
-      <mat-label>login</mat-label>
+      <mat-label>{{ 'loginInfo.login' | translate }}</mat-label>
       <input matInput
       type="text"
-      placeholder="Username"
+      placeholder= "{{ 'loginInfo.placeHolderLogin' | translate }}"
       formControlName="login">
       <mat-error *ngIf="login.touched && login.invalid">
-          Your username is required and must have at least 5 characters.
+        {{ 'loginInfo.loginError' | translate }}
       </mat-error>
     </mat-form-field>
    
     <mat-form-field class="">
-      <mat-label>Password</mat-label>
+      <mat-label>{{ 'loginInfo.password' | translate }}</mat-label>
       <input matInput
       type="password"
-      placeholder="Password"
+      placeholder= "{{ 'loginInfo.placeHolderPassword' | translate }}"
       formControlName="password">
       <mat-error *ngIf="login.touched && login.invalid">
-        Your password is required and must have at least 8 characters.
+        {{ 'loginInfo.passwordError' | translate }}
       </mat-error>
     </mat-form-field>
 
     <button mat-raised-button
     (click)="doLogin()"
-    [disabled]="loginForm.invalid">Log in!</button>
+    [disabled]="loginForm.invalid">{{ 'loginInfo.doLogin' | translate }}</button>
 
   </div>
 
   <div id="inscription">
     <a [routerLink]="['registration']">
-    Je n'ai pas encore de compte
+      {{ 'loginInfo.registration' | translate }}
     </a>
   </div>
 

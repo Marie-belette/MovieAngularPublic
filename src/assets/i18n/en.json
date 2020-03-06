@@ -14,6 +14,26 @@
         "lessThanOneYear": "so young",
         "lessThanTwoYears": "zit face",
         "lessThanFiveYears": "all grown-up",
-        "moreThanFiveYears": "granpa still kicking ass"
+        "moreThanFiveYears": "granpa kicking ass"
+    },
+
+    "loginInfo" : {
+        "login": "username",
+        "placeHolderLogin": "username",
+        "loginError": "Your username is required and must have at least 5 characters",
+        "password": "password",
+        "placeHolderPassword": "username",
+        "passwordError": "Your password is required and must have at least 8 characters",
+        "doLogin": "Log in!",
+        "registration": "I need to register"
+    },
+
+    "registerInfo" : {
+        "username": "User name",
+        "password": "Password",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "eMail": "E-mail adress",
+        "register": "Register!"
     }
 }
