@@ -25,6 +25,8 @@ import { TranslationService } from './core/services/translation.service';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ElapsedTimePipe } from './shared/pipes/elapsed-time.pipe';
 import { RegistrationComponent } from './pages/registration/registration.component';
+import { UserpageComponent } from './pages/userpage/userpage.component';
+import { SearchLikedMoviesComponent } from './pages/home/search-liked-movies/search-liked-movies.component';
 
 // Define a function that invokes TranslationService
 export function translationInitializerFactory(
@@ -55,7 +57,9 @@ export function translationInitializerFactory(
     MovieComponent,
     ModifyComponent,
     ElapsedTimePipe,
-    RegistrationComponent
+    RegistrationComponent,
+    UserpageComponent,
+    SearchLikedMoviesComponent
   ],
   imports: [
     BrowserModule,

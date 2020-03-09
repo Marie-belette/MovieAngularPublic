@@ -7,6 +7,7 @@ import { MovieComponent } from './pages/movie/movie.component';
 import { ModifyComponent } from './pages/movie/modify/modify.component';
 import { MovieResolver } from './core/resolver/movie-resolver';
 import { RegistrationComponent } from './pages/registration/registration.component';
+import { UserpageComponent } from './pages/userpage/userpage.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,10 @@ const routes: Routes = [
     }
   },
   {
+    path: 'movie/:id/modify',
+    component: ModifyComponent
+  },
+  {
     path: 'login',
     component: LoginComponent,
     canActivate: [LoginGuard]
@@ -36,8 +41,8 @@ const routes: Routes = [
     component: RegistrationComponent,
   },
   {
-    path: 'movie/:id/modify',
-    component: ModifyComponent
+    path: 'userpage',
+    component: UserpageComponent,
   },
   {
     path: '**',

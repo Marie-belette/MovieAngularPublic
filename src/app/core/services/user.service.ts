@@ -17,7 +17,7 @@ export class UserService {
     this._registeredUsers = new Array<any>();
     this._registeredUsers.push(
       {
-        login: 'mmaillos',
+        login: 'administrator',
         password: 'terminatotoro',
         token: '$2y$10$2JjOX4xss/JjToQcEL7A4O3rhSbhcedSY.ubjJGh4aIs3Hdqi/af2',
         isAuthenticated: false

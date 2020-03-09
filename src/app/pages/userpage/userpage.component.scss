@@ -1,0 +1,21 @@
+$default-font-color: darkgreen;
+
+#title {
+    text-align: center; 
+    font-size: 9em;
+    margin-top: 0em;
+    margin-bottom: 0.2em;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    background: url(https://images2.minutemediacdn.com/image/upload/c_crop,h_1351,w_2400,x_0,y_0/f_auto,q_auto,w_1100/v1571796144/shape/mentalfloss/604599-gettyimages-1083893950.jpg) repeat;
+    -webkit-background-clip: text;
+    }
+    
+.title {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    font-size: 1.5em;
+    color: seagreen;
+    font-weight: bold;
+}
