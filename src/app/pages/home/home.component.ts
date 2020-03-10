@@ -14,6 +14,7 @@ import { WebSocketSubject } from 'rxjs/webSocket';
 import { environment } from './../../../environments/environment';
 import { transition, animate, trigger, state, style } from '@angular/animations';
 import { TranslateService } from '@ngx-translate/core';
+import { AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -57,7 +58,6 @@ export class HomeComponent implements OnInit {
   public user: UserInterface;
   private socket$: WebSocketSubject<any>;
   public movie = Movie;
-  public timesLiked: number;
   public translationChange$: any;
 
   public constructor(
@@ -65,7 +65,8 @@ export class HomeComponent implements OnInit {
     public userService: UserService, 
     public snackBar: MatSnackBar,
     private router: Router,
-    private translateService: TranslateService) { }
+    private translateService: TranslateService
+    ) { }
 
   ngOnInit() {
     this.socket$ = new WebSocketSubject<any>(environment.wssAddress);

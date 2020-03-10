@@ -15,14 +15,14 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) {
     this._registeredUsers = new Array<any>();
-    this._registeredUsers.push(
-      {
-        login: 'administrator',
-        password: 'terminatotoro',
-        token: '$2y$10$2JjOX4xss/JjToQcEL7A4O3rhSbhcedSY.ubjJGh4aIs3Hdqi/af2',
-        isAuthenticated: false
-      }
-    );
+    // this._registeredUsers.push(
+    //   {
+    //     login: 'administrator',
+    //     password: 'terminatotoro',
+    //     token: '$2y$10$2JjOX4xss/JjToQcEL7A4O3rhSbhcedSY.ubjJGh4aIs3Hdqi/af2',
+    //     isAuthenticated: false
+    //   }
+    // );
     const userAsString: string = localStorage.getItem('user');
     if (userAsString !== null) {
       const userAsObject: any = JSON.parse(userAsString);
