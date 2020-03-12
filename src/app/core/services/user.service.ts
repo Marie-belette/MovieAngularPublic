@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { UserInterface } from './../models/user-interface';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { take } from 'rxjs/operators';
+import { take, map, catchError } from 'rxjs/operators';
 import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Movie } from '../models/movie';
 
 @Injectable({
   providedIn: 'root'
@@ -53,7 +54,8 @@ export class UserService {
         uri, // http://localhost:8080/authenticate
         {
           username: user.login,
-          password: user.password
+          password: user.password,
+          idUser: user.idUser,
         },
         {
           observe: 'response'
@@ -61,6 +63,7 @@ export class UserService {
       ).pipe(
         take(1)
       ).subscribe((response: HttpResponse<any>) => {
+        //si tout est ok!
         if (response.status === 200) {
           // Store token...
           localStorage.setItem(
@@ -70,7 +73,7 @@ export class UserService {
           this._user = user;
           this._user.token = response.body.token;
           this._user.isAuthenticated = true;
-          
+
           this.userSubject$.next(this._user);
           
           resolve(true); // Take your promise
@@ -89,4 +92,35 @@ export class UserService {
     this._user = null;
     this.userSubject$.next(this._user);
   }
+
+  public addNewCount(user: UserInterface): Promise<boolean> {
+    const uri: string = `${environment.account}`;
+    
+    return new Promise<boolean>((resolve) => {
+      this.httpClient.post<any>(
+        uri, // http://localhost:8080/authenticate
+        {
+          username: user.login,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          eMail: user.eMail,
+          password: user.password
+        },
+        {
+          observe: 'response'
+        }
+      ).pipe(
+        take(1)
+      ).subscribe((response: HttpResponse<any>) => {
+        resolve(true);
+       console.log('user crée')
+      }, (error) => {
+        this._user = null;
+        this.userSubject$.next(this._user);
+        
+        resolve(false);
+      });
+    });
+  }
+
 }

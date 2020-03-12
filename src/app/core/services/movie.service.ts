@@ -4,6 +4,8 @@ import { Movie } from './../models/movie';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable, of, BehaviorSubject, throwError } from 'rxjs';
 import { take, map, catchError } from 'rxjs/operators';
+import { UserInterface } from '../models/user-interface';
+import { UserService } from '../services/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,23 +16,14 @@ export class MovieService {
   public years$: BehaviorSubject<number[]> =
     new BehaviorSubject<number[]>(Array.from(this._years).sort());
   public moviesCount: number = 0;
+  public user: UserInterface;
+  public numberLiked: any;
 
   constructor(private httpClient: HttpClient) { }
 
   public get years(): Observable<Array<number>> {
     return of(Array.from(this._years).sort());
     }
-
-  public async allMovies() {
-    const apiRoute: string = `${environment.apiRoot}movie`;
-    let movies = null;
-    try {
-      movies = await fetch(apiRoute);
-    } catch(error) {
-       // If something went wrong
-    }
-    console.log(`Movies : ${JSON.stringify(movies)}`);
-  }
 
   public all(): Observable<Movie[]> {
     this._years = new Set<number>();
@@ -94,6 +87,29 @@ export class MovieService {
       })
     )
   }
+
+  // public like(movie: Movie): Observable<HttpResponse<any>> {
+  //   const apiRoot: string = `${environment.apiRoot}movie/setLike?id=${movie.idMovie}&like=${movie.timesLiked}`;
+  //   return this.httpClient.put(apiRoot, movie, {observe: 'response'})
+  //   .pipe(
+  //     take(1),
+  //     map((response: HttpResponse<any>) => {
+  //       return response;
+  //     })
+  //   )
+  // }
+  
+
+  public like(movie: Movie, user: UserInterface): Observable<HttpResponse<any>> {
+    const apiRoot: string = `${environment.apiRoot}likedMovie/addMovieToLikedMovies?un=${user.login}&idM=${movie.idMovie}`;
+    return this.httpClient.put(apiRoot, movie, {observe: 'response'})
+       .pipe(
+         take(1),
+         map((response: HttpResponse<any>) => {
+           return response;
+         })
+       )
+     }
 
   public delete(movie: Movie): Observable<any> {
     const apiRoot: string = `${environment.apiRoot}movie/${movie.idMovie}`;

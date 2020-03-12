@@ -15,6 +15,7 @@ import { environment } from './../../../environments/environment';
 import { transition, animate, trigger, state, style } from '@angular/animations';
 import { TranslateService } from '@ngx-translate/core';
 import { AbstractControl } from '@angular/forms';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -117,6 +118,7 @@ export class HomeComponent implements OnInit {
     this.userService.userSubject$.subscribe((user: UserInterface) => {
       this.user = user;
     })
+    
 
   }; 
 
@@ -134,11 +136,20 @@ export class HomeComponent implements OnInit {
 
   public likeIt(movie: Movie): void {
     movie.animationState = 'final';
-    //setTimeOut(() => {}, delay), donc on indique le délai après les accolades, et dans les accolades tout ce qui doit se passer après ce délai
-    setTimeout(() => {
+   
       // Emit a new update to ws
       if (this.user) {
+         //setTimeOut(() => {}, delay), donc on indique le délai après les accolades, et dans les accolades tout ce qui doit se passer après ce délai
+        setTimeout(() => {
         movie.timesLiked += 1;
+          console.log(`Will like : ${JSON.stringify(this.movie)}`);
+          this.movieService.like(movie, this.user)
+            .pipe(
+              take(1)
+            ).subscribe((response: HttpResponse<any>) => {
+              console.log(`Update was done with : ${response.status}`);
+            })
+            this.snackBar.open('Movie liked','',{duration: 2000, verticalPosition: 'top'});
     
         // Emit a new update to ws...
         const message: any = {
@@ -156,12 +167,17 @@ export class HomeComponent implements OnInit {
             return movies;
           })
         );
+        movie.animationState = 'initial';
+        setTimeout(() => movie.animationState = 'final', 900);
+        }, 1000);
       } else {
+        setTimeout(() => {
         this.snackBar.open('You are not yet connected','',{duration: 1500, verticalPosition: 'top'});
+        movie.animationState = 'initial';
+        setTimeout(() => movie.animationState = 'initial', 900);
+        }, 1000);
       };
-      movie.animationState = 'initial';
-      setTimeout(() => movie.animationState = 'final', 900);
-     }, 1000);
+      
   }
 
   // ngOnDestroy() {

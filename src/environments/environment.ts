@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  account: 'http://localhost:8080/api/user/addUser',
   authenticate: 'http://localhost:8080/authenticate',
   apiRoot: 'http://localhost:8080/api/',
   wssAddress: 'ws://127.0.0.1:9090'

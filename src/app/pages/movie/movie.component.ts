@@ -22,7 +22,7 @@ export class MovieComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe((data: {movie: any}) => {
       this.movie = data.movie;
-      })
+      });
   }
 
   public deleteMovie(): void {

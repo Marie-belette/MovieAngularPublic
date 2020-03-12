@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   private _navigation: Navigation;
   private _idMovie: number;
+  public idUser: number;
 
   constructor(
     private formBuilder: FormBuilder,
