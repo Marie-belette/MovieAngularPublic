@@ -25,6 +25,19 @@ export class MovieService {
     return of(Array.from(this._years).sort());
     }
 
+    public byUserLiking(): Observable<Movie[]> {
+    const apiRoute: string = `${environment.apiRoot}movie/byUserLiking?un=${this.user.login}`;
+    return this.httpClient.get<any[]>(apiRoute)
+       .pipe(
+         take(1),
+         map((response) => {
+          return response.map((item) => {
+            return new Movie().deserialize(item)
+         });
+        })
+       );
+    }
+
   public all(): Observable<Movie[]> {
     this._years = new Set<number>();
     const apiRoute: string = `${environment.apiRoot}movie`;
@@ -101,7 +114,8 @@ export class MovieService {
   
 
   public like(movie: Movie, user: UserInterface): Observable<HttpResponse<any>> {
-    const apiRoot: string = `${environment.apiRoot}likedMovie/addMovieToLikedMovies?un=${user.login}&idM=${movie.idMovie}`;
+    const apiRoot: string = `${environment.apiRoot}movie/setUserLiking?un=${user.login}&idM=${movie.idMovie}`;
+    console.log("user " + user.login + "wants to like " + movie.idMovie)
     return this.httpClient.put(apiRoot, movie, {observe: 'response'})
        .pipe(
          take(1),
@@ -110,6 +124,18 @@ export class MovieService {
          })
        )
      }
+
+    public dislike(movie: Movie, user: UserInterface): Observable<HttpResponse<any>> {
+      const apiRoot: string = `${environment.apiRoot}movie/eraseUserLiking?un=${user.login}&idM=${movie.idMovie}`;
+      console.log("user " + user.login + "wants to like " + movie.idMovie)
+      return this.httpClient.put(apiRoot, movie, {observe: 'response'})
+         .pipe(
+           take(1),
+           map((response: HttpResponse<any>) => {
+             return response;
+           })
+         )
+       }
 
   public delete(movie: Movie): Observable<any> {
     const apiRoot: string = `${environment.apiRoot}movie/${movie.idMovie}`;

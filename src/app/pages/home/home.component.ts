@@ -21,32 +21,32 @@ import { HttpResponse } from '@angular/common/http';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  animations: [
-    trigger('heartGrowing', [
-      state('initial', style({
-        transform: 'scale(1)',
-        color: 'midnightblue'
-      })),
-      state('final', style({
-        transform: 'scale(2.0)',
-        color: 'pink'
-      })),
-      transition('initial=>final', animate('900ms')),
-      transition('final=>initial', animate('900ms'))
-    ]),
-    trigger('heartSmalling', [
-      state('initial', style({
-        transform: 'scale(2.0)',
-        color: 'pink'
-      })),
-      state('final', style({
-        transform: 'scale(1.0)',
-        color: 'midnightblue'
-      })),
-      transition('initial=>final', animate('900ms')),
-      transition('final=>initial', animate('900ms'))
-    ]),
-  ]
+//  animations: [
+//    trigger('heartGrowing', [
+//      state('initial', style({
+//        transform: 'scale(1)',
+//        color: 'midnightblue'
+//      })),
+//      state('final', style({
+//        transform: 'scale(2.0)',
+//        color: 'pink'
+//      })),
+//      transition('initial=>final', animate('900ms')),
+//      transition('final=>initial', animate('900ms'))
+//    ]),
+//    trigger('heartSmalling', [
+//      state('initial', style({
+//        transform: 'scale(2.0)',
+//        color: 'pink'
+//      })),
+//      state('final', style({
+//        transform: 'scale(1.0)',
+//        color: 'midnightblue'
+//      })),
+//      transition('initial=>final', animate('900ms')),
+//      transition('final=>initial', animate('900ms'))
+//    ]),
+//  ]
 })
 
 export class HomeComponent implements OnInit {
@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit {
     this.socket$.subscribe((socketMessage: any) => {
 
       console.log(JSON.stringify(socketMessage));
-      if(socketMessage._data === 'timesLiked') {
+      if(socketMessage._data === 'numberUsersLiking') {
         // Update interface for this movie
         let movie: Movie = new Movie().deserialize(socketMessage._message);
         console.log(`Update comes from wsServer : ${JSON.stringify(movie)}`);
@@ -134,31 +134,38 @@ export class HomeComponent implements OnInit {
     }
   )};
 
+  public contain(movie:Movie, user:UserInterface): Boolean {
+    let response = false;
+    movie.usersLiking.forEach(usersLiking => {
+      if (usersLiking.login == user.login) {
+       response = true;
+      } 
+    });
+    return response;
+  }
+
   public likeIt(movie: Movie): void {
-    movie.animationState = 'final';
-   
-      // Emit a new update to ws
       if (this.user) {
-         //setTimeOut(() => {}, delay), donc on indique le délai après les accolades, et dans les accolades tout ce qui doit se passer après ce délai
-        setTimeout(() => {
-        movie.timesLiked += 1;
-          console.log(`Will like : ${JSON.stringify(this.movie)}`);
+        if (!this.contain) {
           this.movieService.like(movie, this.user)
             .pipe(
               take(1)
             ).subscribe((response: HttpResponse<any>) => {
-              console.log(`Update was done with : ${response.status}`);
             })
+          }
+        if (this.contain) {
+          this.movieService.dislike(movie, this.user)
+            .pipe(
+              take(1)
+            ).subscribe((response: HttpResponse<any>) => {
+            })
+        }
             this.snackBar.open('Movie liked','',{duration: 2000, verticalPosition: 'top'});
-    
-        // Emit a new update to ws...
         const message: any = {
-          message: 'timesLiked',
+          message: 'numberUsersLiking',
           data: movie,
         };
         this.socket$.next(message);
-    
-        // Update the observable (retains values)
         this.movies = this.movies.pipe(
           map((movies: Movie[]): Movie[] => {
             let movieIndex: number = movies.findIndex(
@@ -167,17 +174,14 @@ export class HomeComponent implements OnInit {
             return movies;
           })
         );
-        movie.animationState = 'initial';
-        setTimeout(() => movie.animationState = 'final', 900);
-        }, 1000);
       } else {
-        setTimeout(() => {
         this.snackBar.open('You are not yet connected','',{duration: 1500, verticalPosition: 'top'});
-        movie.animationState = 'initial';
-        setTimeout(() => movie.animationState = 'initial', 900);
-        }, 1000);
       };
       
+  }
+
+  public dislikeIt (movie, user) {
+    console.log(this.user + " doesn't like " + this.movie.title + " anymore.")
   }
 
   // ngOnDestroy() {

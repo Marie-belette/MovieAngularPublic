@@ -24,7 +24,7 @@ export class UserService {
     //     isAuthenticated: false
     //   }
     // );
-    const userAsString: string = localStorage.getItem('user');
+    const userAsString: string = sessionStorage.getItem('user');
     if (userAsString !== null) {
       const userAsObject: any = JSON.parse(userAsString);
       this._user = this._registeredUsers.find((obj: UserInterface) => obj.token = userAsObject.token)
@@ -66,7 +66,7 @@ export class UserService {
         //si tout est ok!
         if (response.status === 200) {
           // Store token...
-          localStorage.setItem(
+          sessionStorage.setItem(
             'user',
             JSON.stringify({token: response.body.token})
           );
@@ -88,7 +88,7 @@ export class UserService {
   }
 
   public logout(): void {
-    localStorage.removeItem('user');
+    sessionStorage.removeItem('user');
     this._user = null;
     this.userSubject$.next(this._user);
   }

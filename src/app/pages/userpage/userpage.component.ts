@@ -4,6 +4,7 @@ import { UserInterface } from 'src/app/core/models/user-interface';
 import { Observable } from 'rxjs';
 import { Movie } from 'src/app/core/models/movie';
 import { map } from 'rxjs/operators';
+import { MovieService } from 'src/app/core/services/movie.service';
 
 @Component({
   selector: 'app-userpage',
@@ -17,12 +18,18 @@ export class UserpageComponent implements OnInit {
 
   constructor(
     public userService : UserService,
+    private movieService: MovieService,
   ) { }
 
   ngOnInit() {
    this.userService.userSubject$.subscribe((user: UserInterface) => {
      this.user = user;
+    this.movieService.byUserLiking()
    });
+
+   
+
+   }
   //   let movie: Movie = new Movie();
   //   this.movies = this.movies.pipe(
   //     map((movies: Movie[]): Movie[] => {
@@ -40,4 +47,4 @@ export class UserpageComponent implements OnInit {
   //   console.log(`Received ${JSON.stringify(this.movies)}`);
   //   };
 }
-}
+
