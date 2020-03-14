@@ -89,6 +89,21 @@ export class MovieService {
     );
   }
 
+  public moviesLiked(user: UserInterface): Observable<any> {
+    const apiRoot: string = `${environment.apiRoot}movie/byUserLiking?un=${user.login}`;
+    return this.httpClient.get<any>(apiRoot, {observe: 'response'})
+    .pipe(
+      take(1),
+      map((response) => {
+        return response.body;
+        }),
+        catchError((error: any) => {
+          console.log(`Something went wrong : ${JSON.stringify(error)}`);
+          return throwError(error.status)
+        })
+    );
+  }
+
   public update(movie: any): Observable<HttpResponse<any>> {
     const apiRoot: string = `${environment.apiRoot}movie/modify`;
 

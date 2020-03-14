@@ -151,16 +151,18 @@ export class HomeComponent implements OnInit {
             .pipe(
               take(1)
             ).subscribe((response: HttpResponse<any>) => {
-            })
+            });
+            this.snackBar.open('Movie liked','',{duration: 2000, verticalPosition: 'top'});
           }
         if (this.contain) {
           this.movieService.dislike(movie, this.user)
             .pipe(
               take(1)
             ).subscribe((response: HttpResponse<any>) => {
-            })
+            });
+            this.snackBar.open('You do not like this movie anymore','',{duration: 2000, verticalPosition: 'top'});
         }
-            this.snackBar.open('Movie liked','',{duration: 2000, verticalPosition: 'top'});
+            
         const message: any = {
           message: 'numberUsersLiking',
           data: movie,
