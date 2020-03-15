@@ -137,7 +137,7 @@ export class HomeComponent implements OnInit {
   public contain(movie:Movie, user:UserInterface): Boolean {
     let response = false;
     movie.usersLiking.forEach(usersLiking => {
-      if (usersLiking.login == user.login) {
+      if (usersLiking.login == this.user.login) {
        response = true;
       } 
     });
@@ -147,20 +147,20 @@ export class HomeComponent implements OnInit {
   public likeIt(movie: Movie): void {
       if (this.user) {
         if (!this.contain) {
-          this.movieService.like(movie, this.user)
-            .pipe(
-              take(1)
-            ).subscribe((response: HttpResponse<any>) => {
-            });
-            this.snackBar.open('Movie liked','',{duration: 2000, verticalPosition: 'top'});
-          }
-        if (this.contain) {
           this.movieService.dislike(movie, this.user)
             .pipe(
               take(1)
             ).subscribe((response: HttpResponse<any>) => {
             });
             this.snackBar.open('You do not like this movie anymore','',{duration: 2000, verticalPosition: 'top'});
+          }
+        else {
+          this.movieService.like(movie, this.user)
+          .pipe(
+            take(1)
+          ).subscribe((response: HttpResponse<any>) => {
+          });
+          this.snackBar.open('Movie liked','',{duration: 2000, verticalPosition: 'top'});
         }
             
         const message: any = {
@@ -182,9 +182,7 @@ export class HomeComponent implements OnInit {
       
   }
 
-  public dislikeIt (movie, user) {
-    console.log(this.user + " doesn't like " + this.movie.title + " anymore.")
-  }
+
 
   // ngOnDestroy() {
   // this.yearSubscription.unsubscribe();

@@ -1,12 +1,10 @@
-<h1 id=title>{{user.login}}</h1>
+<h1 id="title">{{user.login}}</h1>
 
 <div *ngFor="let movie of moviesLiked | async" class="movies">
     <div class="box">
     <mat-card class='card'>
-        <h2 class="title"> 
-          <a>
-          {{ movie.title }}
-          </a>
+        <h2 class="movieTitle" [routerLink]="['../', 'movie', movie.idMovie]">
+          {{movie.title}}
         </h2>
     </mat-card>
     </div>

@@ -12,10 +12,11 @@ $default-font-color: darkgreen;
     -webkit-background-clip: text;
     }
     
-.title {
+.movieTitle {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
     font-size: 1.5em;
     color: seagreen;
     font-weight: bold;
+    cursor: pointer;
 }

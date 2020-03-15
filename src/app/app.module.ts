@@ -27,6 +27,7 @@ import { ElapsedTimePipe } from './shared/pipes/elapsed-time.pipe';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { UserpageComponent } from './pages/userpage/userpage.component';
 import { SearchLikedMoviesComponent } from './pages/home/search-liked-movies/search-liked-movies.component';
+import { TinderLikeComponent } from './src/app/pages/home/tinder-like/tinder-like.component';
 
 // Define a function that invokes TranslationService
 export function translationInitializerFactory(
@@ -59,7 +60,8 @@ export function translationInitializerFactory(
     ElapsedTimePipe,
     RegistrationComponent,
     UserpageComponent,
-    SearchLikedMoviesComponent
+    SearchLikedMoviesComponent,
+    TinderLikeComponent
   ],
   imports: [
     BrowserModule,
