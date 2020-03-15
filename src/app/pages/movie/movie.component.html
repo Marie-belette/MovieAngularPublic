@@ -9,7 +9,7 @@
     <li id="numberUsersLiking">{{movie.numberUsersLiking}} of y'all liked this movie</li>
     <li id="usersLiking" 
     *ngFor="let usersLiking of movie.usersLiking">
-        <a>
+        <a [routerLink]="['tinderLike']">
         movie liked by : {{ usersLiking.username }}
         </a>
     </li>

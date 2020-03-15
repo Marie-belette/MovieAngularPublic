@@ -3,7 +3,6 @@ import { UserService } from 'src/app/core/services/user.service';
 import { UserInterface } from 'src/app/core/models/user-interface';
 import { Observable } from 'rxjs';
 import { Movie } from 'src/app/core/models/movie';
-import { map } from 'rxjs/operators';
 import { MovieService } from 'src/app/core/services/movie.service';
 
 @Component({

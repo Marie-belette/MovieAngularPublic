@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -8,6 +8,7 @@ import { ModifyComponent } from './pages/movie/modify/modify.component';
 import { MovieResolver } from './core/resolver/movie-resolver';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { UserpageComponent } from './pages/userpage/userpage.component';
+import { TinderLikeComponent } from './pages/userpage/tinder-like/tinder-like.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: 'movie/:id/modify',
     component: ModifyComponent
+  },
+  {
+    path: 'movie/:id/tinderLike',
+    component: TinderLikeComponent
   },
   {
     path: 'login',
