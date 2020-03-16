@@ -1,16 +1,16 @@
 <h1>{{movie.title}}</h1>
 <ul>
-    <li id="year">Released in {{movie.year}}</li>
-    <li id="duration">Duration : {{movie.duration}} minutes</li>
+    <li id="year"> {{'moviePage.release' | translate}} {{movie.year}}</li>
+    <li id="duration"> {{'moviePage.duration' | translate}} {{movie.duration}} minutes</li>
     <li id="originalTitle">{{movie.originalTitle}}</li>
     <li id="genres">{{movie.genres}}</li>
     <li id="synopsis">{{movie.synopsis}}</li>
     <li id="format">{{movie.format}}</li>
-    <li id="numberUsersLiking">{{movie.numberUsersLiking}} of y'all liked this movie</li>
+    <li id="numberUsersLiking">{{movie.numberUsersLiking}} {{'moviePage.thoseWhoLikedNumber' | translate}}</li>
     <li id="usersLiking" 
     *ngFor="let usersLiking of movie.usersLiking">
         <a [routerLink]="['tinderLike']">
-        movie liked by : {{ usersLiking.username }}
+            {{'moviePage.thoseWhoLikedList' | translate}} {{ usersLiking.username }}
         </a>
     </li>
     <li id="buttons">
@@ -18,13 +18,13 @@
             mat-raised-button
             color="primary"
             [routerLink]="['modify']">
-            Modify
+            {{'moviePage.modify' | translate}}
         </button>
         <button id="delete"
             mat-raised-button
             color="primary"
             (click)="deleteMovie()">
-            Delete
+            {{'moviePage.delete' | translate}}
         </button>
     </li>
 </ul>

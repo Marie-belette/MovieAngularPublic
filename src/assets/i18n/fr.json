@@ -35,5 +35,18 @@
         "lastName": "Nom",
         "eMail": "Adresse e-mail",
         "register": "M'enregistrer !"
+    },
+
+    "userpage" : {
+        "moviesYouLike": "Vous aimez ces films: "
+    },
+
+    "moviePage" : {
+        "release": "Sorti en salles en ",
+        "duration": "Durée : ",
+        "thoseWhoLikedNumber": " d'entre vous ont aimé ce film",
+        "thoseWhoLikedList": "Ce film est aimé par : ",
+        "modify": "Modifier",
+        "delete": "Supprimer"
     }
 }

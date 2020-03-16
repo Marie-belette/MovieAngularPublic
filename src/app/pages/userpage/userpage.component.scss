@@ -11,6 +11,10 @@ $default-font-color: darkgreen;
     background: url(https://images2.minutemediacdn.com/image/upload/c_crop,h_1351,w_2400,x_0,y_0/f_auto,q_auto,w_1100/v1571796144/shape/mentalfloss/604599-gettyimages-1083893950.jpg) repeat;
     -webkit-background-clip: text;
     }
+
+p {
+    text-align: center;
+}
     
 .movieTitle {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

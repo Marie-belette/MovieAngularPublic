@@ -35,5 +35,18 @@
         "lastName": "Last Name",
         "eMail": "E-mail adress",
         "register": "Register!"
+    },
+
+    "userpage" : {
+        "moviesYouLike": "You like these movies: "
+    },
+
+    "moviePage" : {
+        "release": "Released in ",
+        "duration": "Duration : ",
+        "thoseWhoLikedNumber": " of y'all liked this movie",
+        "thoseWhoLikedList": "movie liked by : ",
+        "modify": "Modify",
+        "delete": "Delete"
     }
 }
